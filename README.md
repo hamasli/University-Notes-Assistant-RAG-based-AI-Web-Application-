@@ -27,6 +27,16 @@ Upload your lecture notes or academic PDFs, ask questions in plain English, and 
 > **Built by a CS/AI student, for CS/AI students.**
 
 ---
+## 📸 Screenshots
+
+<div align="center">
+  <img src="outputs/output 1.png" alt="Upload Interface" width="800"/>
+  <p><em>Upload your PDF</em></p>
+
+  <img src="assets/output 2.png" alt="AI Answer" width="800"/>
+  <p><em>Ask questions and get source-grounded answers</em></p>
+</div>
+
 
 ## ✨ Features
 
