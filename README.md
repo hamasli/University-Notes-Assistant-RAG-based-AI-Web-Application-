@@ -31,7 +31,7 @@ Upload your lecture notes or academic PDFs, ask questions in plain English, and 
   <img src="output/output 1.png" alt="Upload Interface" width="800"/>
   <p><em>Upload your PDF</em></p>
 
-  <img src="asset/output 2.png" alt="AI Answer" width="800"/>
+  <img src="output/output 2.png" alt="AI Answer" width="800"/>
   <p><em>Ask questions and get source-grounded answers</em></p>
 </div>
 
