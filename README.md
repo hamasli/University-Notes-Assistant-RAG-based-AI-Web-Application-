@@ -1,22 +1,19 @@
-# University Notes Assistant
+# 🎓 University Notes Assistant RAG BASED AI WEB APPLICATION
 
-A simple product-style RAG web app for uploading university notes and asking exam-preparation questions.
+<div align="center">
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-Latest-1C3C3C?style=for-the-badge&logo=chainlink&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-FF6B35?style=for-the-badge)
 
-- Upload a PDF
-- Ingest the PDF into Chroma
-- Ask questions from the notes
-- See all Q/A blocks on the page
-- FastAPI frontend + backend in one project
-- Dockerized
-- Uses `uv` for dependency management
+**A RAG-powered AI web application that lets you chat with your university notes.**  
+Upload any academic PDF and ask questions — get intelligent, source-grounded answers instantly.
 
-## Simple project structure
+[🚀 Quick Start](#-quick-start) · [📖 How It Works](#-how-it-works) · [🛠️ Tech Stack](#%EF%B8%8F-tech-stack) · [🤝 Contributing](#-contributing)
 
-<<<<<<< HEAD
-```text
-=======
 </div>
 
 ---
@@ -28,8 +25,6 @@ Studying from 500-page textbooks is exhausting. Finding specific topics for exam
 Upload your lecture notes or academic PDFs, ask questions in plain English, and receive precise, AI-generated answers — all grounded in your own documents with source references included.
 
 > **Built by a CS/AI student, for CS/AI students.**
-
----
 ## 📸 Screenshots
 
 <div align="center">
@@ -39,7 +34,6 @@ Upload your lecture notes or academic PDFs, ask questions in plain English, and 
   <img src="assets/output 2.png" alt="AI Answer" width="800"/>
   <p><em>Ask questions and get source-grounded answers</em></p>
 </div>
-
 
 ## ✨ Features
 
@@ -118,62 +112,179 @@ This project is built on **RAG (Retrieval-Augmented Generation)** — a modern A
 ## 📂 Project Structure
 
 ```
->>>>>>> a8268487652a33450a74b75e90fc39af9d121b20
 university-notes-assistant/
+│
 ├── app/
-│   ├── main.py
+│   ├── main.py              # FastAPI app + RAG logic
 │   ├── templates/
-│   │   └── index.html
-│   └── static/
-│       ├── style.css
-│       └── main.js
+│   │   └── index.html       # Frontend UI
+│   └── static/              # CSS + JavaScript
+│
 ├── data/
-│   ├── uploads/
-│   └── chroma_db/
-├── pyproject.toml
+│   ├── uploads/             # Uploaded PDF files
+│   └── chroma_db/           # Persistent vector database
+│
+├── output/                  # Output directory
+├── .env                     # Environment variables (API keys)
+├── .gitignore
+├── .dockerignore
 ├── Dockerfile
 ├── docker-compose.yml
-├── .env.example
-└── README.md
+├── pyproject.toml           # Project dependencies
+└── uv.lock
 ```
 
-## Local setup with uv
+---
 
-### 1) Create `.env`
-Copy `.env.example` to `.env` and add your real OpenAI key.
+## 🚀 Quick Start
 
-### 2) Install dependencies
+### Prerequisites
+
+- Python 3.11+
+- An [OpenAI API Key](https://platform.openai.com/api-keys)
+- Docker (optional, for containerized run)
+
+---
+
+### Option 1: Run Locally
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/your-username/university-notes-assistant.git
+cd university-notes-assistant
+```
+
+**2. Set up environment variables**
+```bash
+cp .env.example .env
+```
+Open `.env` and add your OpenAI API key:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+**3. Install dependencies**
 ```bash
 uv sync
 ```
 
-### 3) Run the app
+**4. Run the app**
 ```bash
 uv run uvicorn app.main:app --reload
 ```
 
-### 4) Open in browser
-```text
+**5. Open in browser**
+```
 http://127.0.0.1:8000
 ```
 
-## Docker setup
+---
 
-### Build and run
+### Option 2: Run with Docker 🐳
+
 ```bash
 docker compose up --build
 ```
 
 Then open:
-
-```text
-http://127.0.0.1:8000
+```
+http://localhost:8000
 ```
 
-## Notes
+---
 
-- This first version keeps all logic intentionally simple and visible.
-- Chat history is **not stored in the backend** yet.
-- Old messages stay visible on the frontend only.
-- Each question is answered independently.
-- Later we can split the code into routes/services/schemas.
+## 💬 Usage
+
+1. **Upload** your PDF using the upload button
+2. Click **Ingest** to process and embed the document
+3. **Type your question** in the chat box
+4. Receive an **AI-generated answer** with source references
+
+### Example
+
+**Question:**
+```
+Explain the EM algorithm
+```
+
+**Answer:**
+```
+The Expectation-Maximization (EM) algorithm is an iterative optimization 
+method used to find maximum likelihood estimates in models with latent 
+variables. It alternates between the E-step (computing expected 
+log-likelihood) and the M-step (maximizing it)...
+
+📎 Source — Page 124: "Expectation Maximization is an iterative method..."
+```
+
+---
+
+## ⚙️ Environment Variables
+
+| Variable | Description | Required |
+|---|---|---|
+| `OPENAI_API_KEY` | Your OpenAI API key | ✅ Yes |
+
+Create a `.env` file in the root directory:
+```env
+OPENAI_API_KEY=sk-...
+```
+
+---
+
+## ⚠️ Current Limitations
+
+- Processes one document at a time
+- No multi-user support
+- No persistent chat history across sessions
+- No authentication system
+
+---
+
+## 🔮 Roadmap
+
+- [ ] Multi-document support
+- [ ] Persistent chat memory
+- [ ] Quiz & flashcard generator
+- [ ] React frontend
+- [ ] User authentication
+- [ ] Cloud deployment (AWS / GCP)
+- [ ] Support for DOCX and TXT files
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have ideas for improvements:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Hamas Raja**  
+MSc Computer Science (AI) — University of Pisa, Italy  
+[![YouTube](https://img.shields.io/badge/YouTube-Hamas_Raja!-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@HamasRaja)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github&logoColor=white)](https://github.com/your-username)
+
+---
+
+<div align="center">
+
+**⭐ If this project helped you, please give it a star!**
+
+*Built with ❤️ for students who deserve smarter study tools.*
+
+</div>
